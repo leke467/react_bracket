@@ -54,6 +54,7 @@ const SingleElimination = ({
   if (isResponsive) {
     return (
       <Bracket className={bracketClassName} dir={rtl ? 'rtl' : 'ltr'} mobileBreakpoint={mobileBreakpoint}>
+        {/* @ts-ignore - React type compatibility issue with swipeable-views */}
         <SwipeableViews style={{ minHeight: '500px' }} axis={rtl ? 'x-reverse' : 'x'} {...swipeableProps}>
           {data}
         </SwipeableViews>

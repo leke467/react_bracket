@@ -1,13 +1,32 @@
 {
-  "name": "@oliverlooney/react-brackets",
-  "version": "0.4.11",
-  "description": "React component to render dynamic bracket UI",
-  "author": "Oliver-Looney",
+  "name": "@apex467/react-brackets",
+  "version": "1.0.0",
+  "description": "React component to render dynamic bracket UI with BYE-skip connectors for single and double elimination tournaments. Forked from @oliverlooney/react-brackets",
+  "author": "Apex (https://github.com/leke467)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Oliver-Looney/react-brackets.git"
+    "url": "git+https://github.com/leke467/BattleGrid-Main.git"
   },
+  "keywords": [
+    "react",
+    "brackets",
+    "tournament",
+    "single-elimination",
+    "double-elimination",
+    "bye-matches",
+    "sports-bracket"
+  ],
+  "contributors": [
+    {
+      "name": "Oliver-Looney",
+      "url": "https://github.com/Oliver-Looney"
+    },
+    {
+      "name": "mohux (original creator)",
+      "url": "https://github.com/mohux"
+    }
+  ],
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",

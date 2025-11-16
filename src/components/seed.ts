@@ -83,6 +83,55 @@ font-size: 14px;
 `
 );
 
+/*
+ * ByeSkipSeed - Extends the standard upper branch connector to skip over BYE matches
+ * Replicates even child Seed behavior but with extended vertical line
+ */
+export const ByeSkipSeed = styled.div<ISeedProps>(
+  (props) => `
+padding: 1em 1.5em;
+min-width: 225px;
+width:100%;
+position: relative;
+display: flex;
+align-items: center;
+flex: 0 1 auto;
+flex-direction: column;
+justify-content: center;
+font-size: 14px;
+@media (max-width: ${props.mobileBreakpoint}px) {
+  width:100%;
+}
+@media (min-width: ${(props.mobileBreakpoint || 0) + 1}px) {
+  /* Horizontal line at top */
+  &::before{
+    content:'';
+    border-top: 1px solid #707070;
+    position:absolute;
+    top: calc(50% - 4.5em);
+    width:1.5em;
+    [dir="ltr"] & {
+      right:-1.5em;
+    }
+  }
+
+  /* Extended vertical line going upward from center */
+  &::after {
+    content: "";
+    position: absolute;
+    height: 4.5em;
+    width: 1.5em;
+    border-bottom: 1px solid #707070;
+    top: calc(50% - 4.5em);
+    [dir="ltr"] & {
+      right: 0px;
+      border-right: 1px solid #707070;
+    }
+  }
+}
+`
+);
+
 export const Seed = styled.div<ISeedProps>(
   (props) => `
   padding: 1em 1.5em;
