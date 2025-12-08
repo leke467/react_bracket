@@ -1,4 +1,5 @@
-import { SwipeableViewsProps } from 'react-swipeable-views';
+import * as React from 'react';
+import { SwipeableViewsProps } from 'react-swipeable-views-react-18-fix';
 import { IRenderSeedProps } from '../types/Seed';
 import { IRoundProps } from './Rounds';
 
@@ -19,13 +20,13 @@ export interface ISingleEliminationProps {
    * @param {string} title string or component passed with each round
    * @param {number} round the current round index
    */
-  roundTitleComponent?: (title: string | JSX.Element, roundIdx: number) => JSX.Element;
+  roundTitleComponent?: (title: string | React.ReactElement | string, roundIdx: number) => React.ReactElement;
   /**
    * @param {object} seed the current seed
    * @param {number} breakpoint the breakpoint used to determine responsive size
    * @param {number} roundIdx the current round index
    */
-  renderSeedComponent?: (props: IRenderSeedProps) => JSX.Element;
+  renderSeedComponent?: (props: IRenderSeedProps) => React.ReactElement;
   /** @default false, if true component will be two-sided tournament **/
   twoSided?: boolean;
 }

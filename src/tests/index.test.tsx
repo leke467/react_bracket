@@ -14,6 +14,8 @@ test('Works with empty rounds', () => {
 test('Works with multiple rounds', () => {
   const filledRounds: IRoundProps[] = [
     {
+      id: 1,
+      teams: [{ name: 'Team 1' }, { name: 'Team 2' }],
       title: 'Round 1',
       seeds: [
         {
@@ -27,6 +29,8 @@ test('Works with multiple rounds', () => {
       ],
     },
     {
+      id: 2,
+      teams: [{ name: 'Team 1' }, { name: 'Team 4' }],
       title: 'Round 2',
       seeds: [
         {
@@ -46,6 +50,8 @@ test('Works with multiple rounds', () => {
 test('Works with custom seed', () => {
   const filledRounds: IRoundProps[] = [
     {
+      id: 1,
+      teams: [{ name: 'Team 1' }, { name: 'Team 2' }],
       title: 'Round 1',
       seeds: [
         {
@@ -59,6 +65,8 @@ test('Works with custom seed', () => {
       ],
     },
     {
+      id: 2,
+      teams: [{ name: 'Team 1' }, { name: 'Team 4' }],
       title: 'Round 2',
       seeds: [
         {

@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { ISeedProps } from '../types/Seed';
 
+interface RoundProps {
+  [key: string]: any;
+}
+
 export const Bracket = styled.div<ISeedProps>(
   (props) => `
   display: flex;
@@ -23,7 +27,7 @@ export const Round = styled.div<ISeedProps>(
   `
 );
 
-export const RoundTitle = styled.div`
+export const RoundTitle = styled.div<RoundProps>`
   color: #8f8f8f;
   font-weight: 400;
   text-align: center;

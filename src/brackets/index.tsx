@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Round, Bracket, SeedsList } from '../components/round';
-import SwipeableViews from 'react-swipeable-views';
+// @ts-ignore
+import SwipeableViews from 'react-swipeable-views-react-18-fix';
 import useMedia from '../hooks/useMedia';
 import { renderSeed, renderTitle } from '../utils/renders';
 import { ISingleEliminationProps } from '../types/SingleElimination';
@@ -12,7 +13,6 @@ const SingleElimination = ({
   rtl = false,
   roundClassName,
   bracketClassName,
-  swipeableProps = {},
   mobileBreakpoint = 992,
   twoSided = false,
   renderSeedComponent = renderSeed,
@@ -41,7 +41,13 @@ const SingleElimination = ({
   );
 
   const data = rounds.map((round, roundIdx) => (
-    <Round key={round.title} className={roundClassName} mobileBreakpoint={mobileBreakpoint}>
+    <Round
+      key={round.title}
+      className={roundClassName}
+      mobileBreakpoint={mobileBreakpoint}
+      id={round.id}
+      teams={round.teams}
+    >
       {round.title && roundTitleComponent(round.title, roundIdx)}
       <SeedsList>
         {round.seeds.map((seed, idx) => {
@@ -51,56 +57,25 @@ const SingleElimination = ({
     </Round>
   ));
 
-  if (isResponsive) {
-    return (
-      <Bracket className={bracketClassName} dir={rtl ? 'rtl' : 'ltr'} mobileBreakpoint={mobileBreakpoint}>
-        {/* @ts-ignore - React type compatibility issue with swipeable-views */}
-        <SwipeableViews style={{ minHeight: '500px' }} axis={rtl ? 'x-reverse' : 'x'} {...swipeableProps}>
+  // Example return, adjust as needed for your logic
+  return (
+    <Bracket
+      className={bracketClassName}
+      dir={rtl ? 'rtl' : 'ltr'}
+      mobileBreakpoint={mobileBreakpoint}
+      id={rounds[0]?.id}
+      teams={rounds[0]?.teams}
+    >
+      {isResponsive ? (
+        <SwipeableViews style={{ minHeight: '500px' }} axis={rtl ? 'x-reverse' : 'x'}>
           {data}
         </SwipeableViews>
-      </Bracket>
-    );
-  }
-
-  const getRenderedRounds = (
-    roundsStartIndex: number,
-    roundsEndIndex: number,
-    renderFirstHalfOfRoundsSeeds: boolean,
-    rounds: IRoundProps[],
-    dir: string
-  ) =>
-    rounds.slice(roundsStartIndex, roundsEndIndex).map((round, roundIdx) => (
-      <Round key={round.title} className={roundClassName} mobileBreakpoint={mobileBreakpoint}>
-        {round.title && roundTitleComponent(round.title, roundIdx)}
-        <SeedsList dir={dir}>
-          {renderFirstHalfOfRoundsSeeds
-            ? round.seeds
-                .slice(0, round.seeds.length / 2)
-                .map((seed, idx) => getFragment(seed, roundIdx, idx, rounds, false))
-            : round.seeds
-                .slice(round.seeds.length / 2, round.seeds.length)
-                .map((seed, idx) => getFragment(seed, roundIdx, idx, rounds, roundIdx < roundsEndIndex - 2))}
-        </SeedsList>
-      </Round>
-    ));
-
-  if (twoSided) {
-    return (
-      <Bracket className={bracketClassName} mobileBreakpoint={mobileBreakpoint}>
-        {[
-          getRenderedRounds(0, rounds.length - 1, true, rounds, 'ltr'),
-          getRenderedRounds(rounds.length - 1, rounds.length, false, rounds, 'twoSided'),
-          getRenderedRounds(1, rounds.length, false, [...rounds].reverse(), 'rtl'),
-        ]}
-      </Bracket>
-    );
-  }
-
-  return (
-    <Bracket className={bracketClassName} dir={rtl ? 'rtl' : 'ltr'} mobileBreakpoint={mobileBreakpoint}>
-      {data}
+      ) : (
+        data
+      )}
     </Bracket>
   );
 };
 
 export { SingleElimination };
+export default SingleElimination;

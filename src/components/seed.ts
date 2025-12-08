@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { ISeedProps } from '../types/Seed';
 
+interface SeedProps {
+  [key: string]: any;
+}
+
 export const SeedItem = styled.div`
   color: #fff;
   width: 100%;

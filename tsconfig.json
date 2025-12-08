@@ -7,7 +7,7 @@
       "esnext"
     ],
     "moduleResolution": "node",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "sourceMap": true,
     "declaration": true,
     "esModuleInterop": true,
@@ -15,7 +15,6 @@
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "allowSyntheticDefaultImports": true,
@@ -29,7 +28,8 @@
     "noEmit": true
   },
   "include": [
-    "src"
+    "src",
+    "src/types/react-swipeable-views-react-18-fix.d.ts"
   ],
   "exclude": [
     "node_modules",
