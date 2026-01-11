@@ -165,7 +165,9 @@ export const Seed = styled.div<ISeedProps>(
       }
     }
 
-    &:nth-child(even)::before{
+    /* Use data-original-index if available, otherwise fallback to nth-child */
+    &[data-original-index]:nth-child(even)::before,
+    &:not([data-original-index]):nth-child(even)::before {
       content:'';
       border-top: 1px solid #707070;
       position:absolute;
@@ -179,7 +181,8 @@ export const Seed = styled.div<ISeedProps>(
       }
     }
 
-    &:nth-child(even)::after {
+    &[data-original-index]:nth-child(even)::after,
+    &:not([data-original-index]):nth-child(even)::after {
       border-bottom: 1px solid #707070;
       top: -0.5px;
      [dir="rtl"] & {
@@ -189,12 +192,51 @@ export const Seed = styled.div<ISeedProps>(
         border-right: 1px solid #707070;
       }
     }
-    &:nth-child(odd):not(:last-child)::after {
+    
+    &[data-original-index]:nth-child(odd):not(:last-child)::after,
+    &:not([data-original-index]):nth-child(odd):not(:last-child)::after {
       border-top: 1px solid #707070;
       top: calc(50% - 0.5px);
       [dir="rtl"] & {
         border-left: 1px solid #707070;
         }
+      [dir="ltr"] & {
+        border-right: 1px solid #707070;
+      }
+    }
+    
+    /* Handle connectors based on original even position (before BYE filtering) */
+    &[data-original-index][data-is-original-even="true"]::before {
+      content:'';
+      border-top: 1px solid #707070;
+      position:absolute;
+      top: -0.5px;
+      width:1.5em;
+      [dir="rtl"] & {
+        left:-1.5em;
+      }
+      [dir="ltr"] & {
+        right:-1.5em;
+      }
+    }
+
+    &[data-original-index][data-is-original-even="true"]::after {
+      border-bottom: 1px solid #707070;
+      top: -0.5px;
+      [dir="rtl"] & {
+        border-left: 1px solid #707070;
+      }
+      [dir="ltr"] & {
+        border-right: 1px solid #707070;
+      }
+    }
+    
+    &[data-original-index][data-is-original-even="false"]:not(:last-child)::after {
+      border-top: 1px solid #707070;
+      top: calc(50% - 0.5px);
+      [dir="rtl"] & {
+        border-left: 1px solid #707070;
+      }
       [dir="ltr"] & {
         border-right: 1px solid #707070;
       }
