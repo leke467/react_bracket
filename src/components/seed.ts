@@ -136,6 +136,56 @@ font-size: 14px;
 `
 );
 
+/*
+ * ByeSkipDownSeed - L-shaped connector going DOWNWARD for BYE matches
+ * in losers bracket where the match sits above its target in the next round.
+ * Mirror of ByeSkipSeed but vertical line goes down instead of up.
+ */
+export const ByeSkipDownSeed = styled.div<ISeedProps>(
+  (props) => `
+padding: 1em 1.5em;
+min-width: 225px;
+width:100%;
+position: relative;
+display: flex;
+align-items: center;
+flex: 0 1 auto;
+flex-direction: column;
+justify-content: center;
+font-size: 14px;
+@media (max-width: ${props.mobileBreakpoint}px) {
+  width:100%;
+}
+@media (min-width: ${(props.mobileBreakpoint || 0) + 1}px) {
+  /* Horizontal line at bottom of vertical */
+  &::before{
+    content:'';
+    border-bottom: 1px solid #707070;
+    position:absolute;
+    top: calc(50% + 4.5em);
+    width:1.5em;
+    [dir="ltr"] & {
+      right:-1.5em;
+    }
+  }
+
+  /* Extended vertical line going downward from center */
+  &::after {
+    content: "";
+    position: absolute;
+    height: 4.5em;
+    width: 1.5em;
+    border-top: 1px solid #707070;
+    top: 50%;
+    [dir="ltr"] & {
+      right: 0px;
+      border-right: 1px solid #707070;
+    }
+  }
+}
+`
+);
+
 export const Seed = styled.div<ISeedProps>(
   (props) => `
   padding: 1em 1.5em;
